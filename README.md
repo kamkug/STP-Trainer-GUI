@@ -1,4 +1,4 @@
-"# Author : Kamil Kugler"
+# Author : Kamil Kugler
 
 Hello guys! 
 
