@@ -281,8 +281,7 @@ class STPTrainer():
                         local["lowest"] = neighbor_name
                         local[neighbor_name][2] = "RP"
         return directly_connected_dict
-   
-
+    
     def setRootPathCostForAll(self):        
         
         """
@@ -297,35 +296,14 @@ class STPTrainer():
                 if local_name in neighbor and local_name != neighbor:
                     if local_name != self.root_bridge:
                         if neighbor["lowest"] != '':
-                            #print("local is: ",local_name, " and lowest cost is: ", local[local["lowest"]][1])
-                            #print("neighbor is: ", neighbor_name, " and his lowest cost is: ", neighbor[neighbor["lowest"]][1]) #+ local[neighbor_name][1])
                             updated_lowest_cost_through_neighbor = neighbor[neighbor["lowest"]][1] + local[neighbor_name][0]
-                            lowest_current_root_path_cost = local[local["lowest"]][1] + local[neighbor_name][0]
+                            lowest_current_root_path_cost = local[local["lowest"]][1]
                             if updated_lowest_cost_through_neighbor  < lowest_current_root_path_cost:
                                 local[local["lowest"]][2] = "none"
                                 local["lowest"] = neighbor_name
-                                local[neighbor_name][2] = "RP"
-                                local[neighbor_name][1] = updated_lowest_cost_through_neighbor
-                            elif updated_lowest_cost_through_neighbor > lowest_current_root_path_cost:    #<---- added
-                                neighbor[neighbor["lowest"]][2] = "none"
-                                neighbor["lowest"] = local_name
-                                neighbor[neighbor["lowest"]][2] = "RP"
-                                neighbor[neighbor["lowest"]][1] = lowest_current_root_path_cost# + neighbor[local_name][0]
-            for switch_name in self.stp_domain:                                    # <---- added
-                switch = self.stp_domain[switch_name]
-                for key in switch:
-                    if key.startswith('s') and switch_name != self.root_bridge:
-                        lowest_cost = switch[switch["lowest"]][1]
-                        if switch[key][1] < lowest_cost:
-                            switch[switch["lowest"]][2] = "none"
-                            switch["lowest"] = key
-                            switch[switch["lowest"]][2] = "RP"
-                        elif switch[key][1] == lowest_cost and self.stp_domain[key]["bridgeID"] < self.stp_domain[switch["lowest"]]["bridgeID"]:  #<---- added
-                            switch[switch["lowest"]][2] = "none"
-                            switch["lowest"] = key
-                            switch[switch["lowest"]][2] = "RP"
-
-
+                                local[local["lowest"]][2] = "RP"
+                                local[local["lowest"]][1] = updated_lowest_cost_through_neighbor
+    
 
     def setRootPathCostForNotDirectlyConnected(self):
         """
