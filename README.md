@@ -1,4 +1,6 @@
-# Author : Kamil Kugler
+# GUI representation of my STP Trainer
+
+Author : Kamil Kugler
 
 Hello guys! 
 
