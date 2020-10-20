@@ -34,7 +34,7 @@ neighboring switches, at the moment I do not have established plans
 to implement that feature and possibly never will (but it is rather
 simple to define those ports anyway).
 
-I have always considered the biggest challenge being to calculate\n 
+I have always considered the biggest challenge being to calculate
 all of the proper costs and figure out which ports belong to :
     
     - Blocking ports
